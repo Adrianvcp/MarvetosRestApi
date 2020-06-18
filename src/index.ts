@@ -1,6 +1,16 @@
 import express, { Application } from "express";
 import indexRoutes from "./routes/indexRoutes";
 
+
+//Importamos categoria
+import categoriaRoutes from "./routes/categoriaRoutes";
+
+
+//Importamos Producto
+
+import productoRoutes from "./routes/productoRoutes";
+//import from "./routes/categoriaRoutes";
+
 //librerias
 import morgan from "morgan";
 import cors from "cors";
@@ -25,11 +35,13 @@ class Server {
   //rutas
   routes(): void {
     this.app.use("/", indexRoutes);
+    this.app.use("/categoria", categoriaRoutes);
+    this.app.use("/producto", productoRoutes);
   }
 
   start(): void {
     this.app.listen(this.app.get("port"), () => {
-      console.log("3000");
+      console.log(this.app.get("port"));
     });
   }
 }
