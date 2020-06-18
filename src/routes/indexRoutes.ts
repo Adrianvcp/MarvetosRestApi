@@ -9,9 +9,6 @@ class IndexRoutes {
   }
   config(): void {
     this.router.get("/", indexController.list);
-    this.router.post("/", indexController.create);
-    this.router.delete("/:id", indexController.delete);
-    this.router.put("/:id", indexController.put);
   }
 }
 

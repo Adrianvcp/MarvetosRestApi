@@ -1,6 +1,12 @@
 import express, { Application } from "express";
 import indexRoutes from "./routes/indexRoutes";
 
+//Rol
+import rolRoutes from "./routes/rolRoutes";
+//User
+import userRouter from "./routes/userRoutes";
+//Carrito
+import carritoRoute from "./routes/carritoRoute";
 //librerias
 import morgan from "morgan";
 import cors from "cors";
@@ -25,11 +31,14 @@ class Server {
   //rutas
   routes(): void {
     this.app.use("/", indexRoutes);
+    this.app.use("/rol", rolRoutes);
+    this.app.use("/user", userRouter);
+    this.app.use("/cart", carritoRoute);
   }
 
   start(): void {
     this.app.listen(this.app.get("port"), () => {
-      console.log("3000");
+      console.log(this.app.get("port"));
     });
   }
 }
