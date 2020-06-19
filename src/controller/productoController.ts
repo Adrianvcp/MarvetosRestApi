@@ -33,6 +33,33 @@ class ProductoController{
         res.json({text: "El producto " + [req.body.name] + " fue actualizado",
         });
     }
+
+    //eliminar producto
+    public async delete(req: Request, res: Response): Promise<void>{
+        await pool.query("delete from producto where producto.idProducto = ?",
+        [req.params.id]);
+        res.json({text:"El producto " + [req.body.name] + " fue eliminado"
+        });
+    }
+
+    //buscar producto
+    public async getOne(req: Request, res: Response): Promise<any>{
+        const data = await pool.query(
+            "select *from producto where producto.idProducto = ?",[req.params.id],
+            
+            (err, result, field) => {
+                if(!err){
+                    res.json(result);
+                }
+                
+            }
+            
+        );
+       
+        }
+    
+
+   
 }
 
 export const productoController = new ProductoController();

@@ -9,7 +9,9 @@ import categoriaRoutes from "./routes/categoriaRoutes";
 //Importamos Producto
 
 import productoRoutes from "./routes/productoRoutes";
-//import from "./routes/categoriaRoutes";
+
+//Importamos DetalleCarrito
+import detallecarritoRoutes from "./routes/detalleCarritoRoutes";
 
 //librerias
 import morgan from "morgan";
@@ -37,6 +39,7 @@ class Server {
     this.app.use("/", indexRoutes);
     this.app.use("/categoria", categoriaRoutes);
     this.app.use("/producto", productoRoutes);
+    this.app.use("/detalleCarrito", detallecarritoRoutes);
   }
 
   start(): void {
