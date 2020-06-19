@@ -1,18 +1,15 @@
 import express, { Application } from "express";
 import indexRoutes from "./routes/indexRoutes";
 
-<<<<<<< HEAD
 //Rol
 import rolRoutes from "./routes/rolRoutes";
 //User
 import userRouter from "./routes/userRoutes";
 //Carrito
 import carritoRoute from "./routes/carritoRoute";
-=======
 
 //Importamos categoria
 import categoriaRoutes from "./routes/categoriaRoutes";
-
 
 //Importamos Producto
 
@@ -21,7 +18,6 @@ import productoRoutes from "./routes/productoRoutes";
 //Importamos DetalleCarrito
 import detallecarritoRoutes from "./routes/detalleCarritoRoutes";
 
->>>>>>> CatPro
 //librerias
 import morgan from "morgan";
 import cors from "cors";
@@ -46,15 +42,12 @@ class Server {
   //rutas
   routes(): void {
     this.app.use("/", indexRoutes);
-<<<<<<< HEAD
-    this.app.use("/rol", rolRoutes);
-    this.app.use("/user", userRouter);
-    this.app.use("/cart", carritoRoute);
-=======
-    this.app.use("/categoria", categoriaRoutes);
-    this.app.use("/producto", productoRoutes);
-    this.app.use("/detalleCarrito", detallecarritoRoutes);
->>>>>>> CatPro
+    this.app.use("/api/rol", rolRoutes);
+    this.app.use("/api/user", userRouter);
+    this.app.use("/api/cart", carritoRoute);
+    this.app.use("/api/categoria", categoriaRoutes);
+    this.app.use("/api/producto", productoRoutes);
+    this.app.use("/api/detalleCarrito", detallecarritoRoutes);
   }
 
   start(): void {
