@@ -45,11 +45,11 @@ CREATE TABLE Carrito
     idPago int NOT NULL,
     idCarrito int NOT NULL,
     precioTotal decimal
-                (3,2) NOT NULL,
+                (6,2) NOT NULL,
     cantProducto int NOT NULL,
     direccion varchar
                 (45) NOT NULL,
-    fechaCreada date NOT NULL,
+    fechaCreada timestamp NOT NULL,
     comentarios varchar
                 (100) NOT NULL,
     idUbicacion int NOT NULL,
@@ -71,156 +71,165 @@ CREATE TABLE Carrito
                     -- Table: FormaPago
                     CREATE TABLE FormaPago
                     (
-                        idPago int NOT NULL,
-                        name varchar(40) NOT NULL,
-                        CONSTRAINT FormaPago_pk PRIMARY KEY (idPago)
-                    );
-
-                    -- Table: Orden
-                    CREATE TABLE Orden
-                    (
-                        idOrden int NOT NULL
+                        idPago int NOT NULL
                         AUTO_INCREMENT,
+    name varchar
+                        (40) NOT NULL,
+    CONSTRAINT FormaPago_pk PRIMARY KEY
+                        (idPago)
+);
+
+                        -- Table: Orden
+                        CREATE TABLE Orden
+                        (
+                            idOrden int NOT NULL
+                            AUTO_INCREMENT,
     idDetalleCarrito int NOT NULL,
     idEstado int NOT NULL,
     idConductor int NOT NULL,
     idVendedor int NOT NULL,
     CONSTRAINT Orden_pk PRIMARY KEY
-                        (idOrden)
+                            (idOrden)
 );
 
-                        -- Table: Producto
-                        CREATE TABLE Producto
-                        (
-                            idProducto int NOT NULL
-                            AUTO_INCREMENT,
+                            -- Table: Producto
+                            CREATE TABLE Producto
+                            (
+                                idProducto int NOT NULL
+                                AUTO_INCREMENT,
     idCategoria int NOT NULL,
     name varchar
-                            (15) NOT NULL,
+                                (15) NOT NULL,
     image varchar
-                            (300) NOT NULL,
+                                (300) NOT NULL,
     precio double
-                            (3,2) NOT NULL,
+                                (5,2) NOT NULL,
     stock int NOT NULL,
     CONSTRAINT Producto_pk PRIMARY KEY
-                            (idProducto)
+                                (idProducto)
 );
 
-                            -- Table: Rol
-                            CREATE TABLE Rol
-                            (
-                                idRol int NOT NULL
-                                AUTO_INCREMENT,
-    nombreRol varchar
-                                (40) NOT NULL,
-    CONSTRAINT Rol_pk PRIMARY KEY
-                                (idRol)
-);
-
-                                -- Table: Ubicacion
-                                CREATE TABLE Ubicacion
+                                -- Table: Rol
+                                CREATE TABLE Rol
                                 (
-                                    idUbicacion int NOT NULL,
-                                    Distrito varchar(25) NOT NULL,
-                                    Precio decimal(3,2) NOT NULL,
-                                    CONSTRAINT Ubicacion_pk PRIMARY KEY (idUbicacion)
-                                );
-
-                                -- Table: User
-                                CREATE TABLE User
-                                (
-                                    idUser int NOT NULL
+                                    idRol int NOT NULL
                                     AUTO_INCREMENT,
+    nombreRol varchar
+                                    (40) NOT NULL,
+    CONSTRAINT Rol_pk PRIMARY KEY
+                                    (idRol)
+);
+
+                                    -- Table: Ubicacion
+                                    CREATE TABLE Ubicacion
+                                    (
+                                        idUbicacion int NOT NULL
+                                        AUTO_INCREMENT,
+    Distrito varchar
+                                        (25) NOT NULL,
+    Precio decimal
+                                        (6,2) NOT NULL,
+    CONSTRAINT Ubicacion_pk PRIMARY KEY
+                                        (idUbicacion)
+);
+
+                                        -- Table: User
+                                        CREATE TABLE User
+                                        (
+                                            idUser int NOT NULL
+                                            AUTO_INCREMENT,
     pass varchar
-                                    (8) NOT NULL,
+                                            (8) NOT NULL,
     RUC varchar
-                                    (11) NULL,
-    DNI int NULL,
+                                            (11) NULL,
+    DNI varchar
+                                            (8) NOT NULL,
     Apellidos varchar
-                                    (20) NOT NULL,
+                                            (20) NOT NULL,
     Nombres varchar
-                                    (20) NOT NULL,
+                                            (20) NOT NULL,
     idRol int NOT NULL,
     CONSTRAINT User_pk PRIMARY KEY
-                                    (idUser)
+                                            (idUser)
 );
 
-                                    -- Table: Vendedor
-                                    CREATE TABLE Vendedor
-                                    (
-                                        idVendedor int NOT NULL
-                                        AUTO_INCREMENT,
-    name int NOT NULL,
+                                            -- Table: Vendedor
+                                            CREATE TABLE Vendedor
+                                            (
+                                                idVendedor int NOT NULL
+                                                AUTO_INCREMENT,
+    name varchar
+                                                (100) NOT NULL,
     CONSTRAINT Vendedor_pk PRIMARY KEY
-                                        (idVendedor)
+                                                (idVendedor)
 );
 
-                                        -- foreign keys
-                                        -- Reference: Carrito_User (table: Carrito)
-                                        ALTER TABLE Carrito ADD CONSTRAINT Carrito_User FOREIGN KEY Carrito_User
-                                        (idUser)
+                                                -- foreign keys
+                                                -- Reference: Carrito_User (table: Carrito)
+                                                ALTER TABLE Carrito ADD CONSTRAINT Carrito_User FOREIGN KEY Carrito_User
+                                                (idUser)
     REFERENCES User
-                                        (idUser);
+                                                (idUser);
 
-                                        -- Reference: DetalleCarrito_Carrito (table: DetalleCarrito)
-                                        ALTER TABLE DetalleCarrito ADD CONSTRAINT DetalleCarrito_Carrito FOREIGN KEY DetalleCarrito_Carrito
-                                        (idCarrito)
+                                                -- Reference: DetalleCarrito_Carrito (table: DetalleCarrito)
+                                                ALTER TABLE DetalleCarrito ADD CONSTRAINT DetalleCarrito_Carrito FOREIGN KEY DetalleCarrito_Carrito
+                                                (idCarrito)
     REFERENCES Carrito
-                                        (idCarrito);
+                                                (idCarrito);
 
-                                        -- Reference: DetalleCarrito_Pago (table: DetalleCarrito)
-                                        ALTER TABLE DetalleCarrito ADD CONSTRAINT DetalleCarrito_Pago FOREIGN KEY DetalleCarrito_Pago
-                                        (idPago)
+                                                -- Reference: DetalleCarrito_Pago (table: DetalleCarrito)
+                                                ALTER TABLE DetalleCarrito ADD CONSTRAINT DetalleCarrito_Pago FOREIGN KEY DetalleCarrito_Pago
+                                                (idPago)
     REFERENCES FormaPago
-                                        (idPago);
+                                                (idPago);
 
-                                        -- Reference: DetalleCarrito_Producto (table: DetalleCarrito)
-                                        ALTER TABLE DetalleCarrito ADD CONSTRAINT DetalleCarrito_Producto FOREIGN KEY DetalleCarrito_Producto
-                                        (Producto_idProducto)
+                                                -- Reference: DetalleCarrito_Producto (table: DetalleCarrito)
+                                                ALTER TABLE DetalleCarrito ADD CONSTRAINT DetalleCarrito_Producto FOREIGN KEY DetalleCarrito_Producto
+                                                (Producto_idProducto)
     REFERENCES Producto
-                                        (idProducto);
+                                                (idProducto);
 
-                                        -- Reference: DetalleCarrito_Ubicacion (table: DetalleCarrito)
-                                        ALTER TABLE DetalleCarrito ADD CONSTRAINT DetalleCarrito_Ubicacion FOREIGN KEY DetalleCarrito_Ubicacion
-                                        (idUbicacion)
+                                                -- Reference: DetalleCarrito_Ubicacion (table: DetalleCarrito)
+                                                ALTER TABLE DetalleCarrito ADD CONSTRAINT DetalleCarrito_Ubicacion FOREIGN KEY DetalleCarrito_Ubicacion
+                                                (idUbicacion)
     REFERENCES Ubicacion
-                                        (idUbicacion);
+                                                (idUbicacion);
 
-                                        -- Reference: Orden_Conductor (table: Orden)
-                                        ALTER TABLE Orden ADD CONSTRAINT Orden_Conductor FOREIGN KEY Orden_Conductor
-                                        (idConductor)
+                                                -- Reference: Orden_Conductor (table: Orden)
+                                                ALTER TABLE Orden ADD CONSTRAINT Orden_Conductor FOREIGN KEY Orden_Conductor
+                                                (idConductor)
     REFERENCES Conductor
-                                        (idConductor);
+                                                (idConductor);
 
-                                        -- Reference: Orden_DetalleCarrito (table: Orden)
-                                        ALTER TABLE Orden ADD CONSTRAINT Orden_DetalleCarrito FOREIGN KEY Orden_DetalleCarrito
-                                        (idDetalleCarrito)
+                                                -- Reference: Orden_DetalleCarrito (table: Orden)
+                                                ALTER TABLE Orden ADD CONSTRAINT Orden_DetalleCarrito FOREIGN KEY Orden_DetalleCarrito
+                                                (idDetalleCarrito)
     REFERENCES DetalleCarrito
-                                        (idDetalleCarrito);
+                                                (idDetalleCarrito);
 
-                                        -- Reference: Orden_Estado (table: Orden)
-                                        ALTER TABLE Orden ADD CONSTRAINT Orden_Estado FOREIGN KEY Orden_Estado
-                                        (idEstado)
+                                                -- Reference: Orden_Estado (table: Orden)
+                                                ALTER TABLE Orden ADD CONSTRAINT Orden_Estado FOREIGN KEY Orden_Estado
+                                                (idEstado)
     REFERENCES Estado
-                                        (idEstado);
+                                                (idEstado);
 
-                                        -- Reference: Orden_Vendedor (table: Orden)
-                                        ALTER TABLE Orden ADD CONSTRAINT Orden_Vendedor FOREIGN KEY Orden_Vendedor
-                                        (idVendedor)
+                                                -- Reference: Orden_Vendedor (table: Orden)
+                                                ALTER TABLE Orden ADD CONSTRAINT Orden_Vendedor FOREIGN KEY Orden_Vendedor
+                                                (idVendedor)
     REFERENCES Vendedor
-                                        (idVendedor);
+                                                (idVendedor);
 
-                                        -- Reference: Producto_Categoria (table: Producto)
-                                        ALTER TABLE Producto ADD CONSTRAINT Producto_Categoria FOREIGN KEY Producto_Categoria
-                                        (idCategoria)
+                                                -- Reference: Producto_Categoria (table: Producto)
+                                                ALTER TABLE Producto ADD CONSTRAINT Producto_Categoria FOREIGN KEY Producto_Categoria
+                                                (idCategoria)
     REFERENCES Categoria
-                                        (idCategoria);
+                                                (idCategoria);
 
-                                        -- Reference: User_Table_24 (table: User)
-                                        ALTER TABLE User ADD CONSTRAINT User_Table_24 FOREIGN KEY User_Table_24
-                                        (idRol)
+                                                -- Reference: User_Table_24 (table: User)
+                                                ALTER TABLE User ADD CONSTRAINT User_Table_24 FOREIGN KEY User_Table_24
+                                                (idRol)
     REFERENCES Rol
-                                        (idRol);
+                                                (idRol);
 
 -- End of file.
 
