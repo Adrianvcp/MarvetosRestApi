@@ -58,6 +58,17 @@ class ProductoController{
        
         }
     
+    //producto de limite 3   
+     public async listThree(req: Request, res: Response): Promise<void>{
+        const data = await pool.query(
+            "select *from producto limit 3",
+            (err, result, field) => {
+                if(!err){
+                    res.json(result);
+                }
+            }
+        );
+    }
 
    
 }
