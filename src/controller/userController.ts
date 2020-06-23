@@ -49,6 +49,30 @@ class UserController {
       res.json({ Resultado: "Eror:" + error });
     }
   }
+
+  public async login(req: Request, res: Response): Promise<void> {
+    try {
+      console.log(req.body.email);
+      await pool.query(
+        "select * from user u where u.email = ? and u.pass=?",
+        [req.body.email, req.body.pass],
+        (err, result, field) => {
+          if (!err) {
+            if (result.length != 0) {
+              console.log("Usuario logeado");
+              res.json(result);
+            } else {
+              console.log("Usuario no registrado en el sistema");
+              res.json(result);
+            }
+          }
+        }
+      );
+    } catch (error) {
+      res.json({ Resultado: "Erro" + error });
+    }
+  }
+
   //---
 }
 
