@@ -34,6 +34,17 @@ class OrdenController {
     );
   }
 
+  public async lastIdOrden(req: Request, res: Response): Promise<void> {
+    const data = await pool.query(
+      "select max(idOrden) from Orden",
+      (err, result, field) => {
+        if (!err) {
+          res.json(result);
+        }
+      }
+    );
+  }
+
 
 }
 const ordenController = new OrdenController();
