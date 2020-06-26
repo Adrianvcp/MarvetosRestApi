@@ -24,7 +24,7 @@ class UbicacionController {
   
   public async list(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
-      "select * from ubicacion",
+      "select * from ubicacion ",
       (err, result, field) => {
         if (!err) {
           res.json(result);
@@ -32,6 +32,18 @@ class UbicacionController {
       }
     );
   }
+
+  public async listDiscount(req: Request, res: Response): Promise<void>{
+    const data = await pool.query(
+      "SELECT * FROM ubicacion INNER JOIN diadescuento on ubicacion.idDiaDescuento = diadescuento.idDiaDescuento",
+      (err, result, field) => {
+        if (!err) {
+          res.json(result);
+        }
+      }
+    );
+  }
+  
 }
 const ubicacionController = new UbicacionController();
 export default ubicacionController; 
