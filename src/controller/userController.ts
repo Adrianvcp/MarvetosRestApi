@@ -55,6 +55,7 @@ class UserController {
     }
   }
 
+  //TOKEN
   public async login(req: Request, res: Response): Promise<void> {
     try {
       console.log(req.body.email);
