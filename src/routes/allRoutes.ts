@@ -1,5 +1,5 @@
 import { Router } from "express";
-import allController from '../controller/allController';
+import allController from "../controller/allController";
 
 class AllRoutes {
   public router: Router = Router();
@@ -11,7 +11,7 @@ class AllRoutes {
   config(): void {
     this.router.get("/", allController.list);
     this.router.get("/:id", allController.getOneBuy);
-    }
+  }
 }
 
 const allRoute = new AllRoutes();
