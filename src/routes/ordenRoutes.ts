@@ -1,5 +1,5 @@
 import { Router } from "express";
-import ordenController from '../controller/ordenController';
+import ordenController from "../controller/ordenController";
 
 class OrdenRoutes {
   public router: Router = Router();
