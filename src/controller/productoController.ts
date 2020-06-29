@@ -56,7 +56,7 @@ class ProductoController {
   //seleccionar por categoria
   public async listCate(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
-      "SELECT * FROM producto where producto.idProducto=?",
+      "SELECT * FROM producto where producto.idCategoria=?",
       [req.params.id],
       (err, result, field) => {
         if (!err) {
