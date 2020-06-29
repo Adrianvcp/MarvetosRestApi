@@ -25,6 +25,8 @@ import vendedorRoutes from "./routes/vendedorRoutes";
 import ubicacionRoutes from "./routes/ubicacionRoutes";
 import formaPagoRoutes from "./routes/formaPagoRoutes";
 import ordenRoutes from "./routes/ordenRoutes";
+import allRoutes from "./routes/AllRoutes";
+
 //librerias
 import morgan from "morgan";
 import cors from "cors";
@@ -61,6 +63,7 @@ class Server {
     this.app.use("/api/ubicacion", ubicacionRoutes);
     this.app.use("/api/formaPago", formaPagoRoutes);
     this.app.use("/api/orden", ordenRoutes);
+    this.app.use("/api/todo",allRoutes);
   }
 
   start(): void {

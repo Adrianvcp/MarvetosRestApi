@@ -45,7 +45,7 @@ class ProductoController{
     //buscar producto
     public async getOne(req: Request, res: Response): Promise<any>{
         const data = await pool.query(
-            "select *from producto where producto.name = ?",[req.params.name],
+            "select * from producto where producto.name = ?",[req.params.name],
             
             (err, result, field) => {
                 if(!err){
@@ -61,7 +61,7 @@ class ProductoController{
     //seleccionar por categoria
     public async listCate(req: Request, res: Response): Promise<void>{
         const data = await pool.query(
-            "SELECT * FROM producto where producto.idCategoria=?",[req.params.id],
+            "SELECT * FROM producto where producto.idProducto=?",[req.params.id],
             (err, result, field) => {
                 if(!err){
                     res.json(result);
