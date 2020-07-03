@@ -30,7 +30,6 @@ class DetalleCarritoController {
     res.json({ text: "Detalle carrito actualizado " });
   }
 
-  
   //seleccionar por detalleVenta
   public async listCarrito(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
@@ -47,7 +46,8 @@ class DetalleCarritoController {
   //seleccion de detalleCarrito con sus productos
   public async BuscarDetalle(req: Request, res: Response): Promise<any> {
     const data = await pool.query(
-      "SELECT detallecarrito.idOrden, producto.name as Productos,detallecarrito.cantProducto, unidad.name as unidades FROM `detallecarrito` INNER JOIN producto ON producto.idProducto = detallecarrito.idProducto INNER JOIN unidad ON unidad.idUnidad = producto.idUnidad where detallecarrito.idOrden=?",[req.params.id],
+      "SELECT detallecarrito.idOrden, producto.name as Productos,detallecarrito.cantProducto, unidad.name as unidades FROM `detallecarrito` INNER JOIN producto ON producto.idProducto = detallecarrito.idProducto INNER JOIN unidad ON unidad.idUnidad = producto.idUnidad where detallecarrito.idOrden=?",
+      [req.params.id],
 
       (err, result, field) => {
         if (!err) {
@@ -55,10 +55,7 @@ class DetalleCarritoController {
         }
       }
     );
-  } 
-
-
-
+  }
 
   //eliminar producto
   /*public async delete(req: Request, res: Response): Promise<void>{
@@ -67,6 +64,17 @@ class DetalleCarritoController {
         res.json({text:"El detalleCarrito fue eliminado"
         });
     }*/
+
+  public async getDescuento(req: Request, res: Response): Promise<void> {
+    await pool.query(
+      "SELECT * FROM diadescuento INNER JOIN ubicacion ON diadescuento.idDiaDescuento=ubicacion.idDiaDescuento",
+      (err, result, field) => {
+        if (!err) {
+          res.json(result);
+        }
+      }
+    );
+  }
 }
 
 export const detallecarritoController = new DetalleCarritoController();

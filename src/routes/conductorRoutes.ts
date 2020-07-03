@@ -7,6 +7,7 @@ class ConductorRoutes {
   constructor() {
     this.config();
   }
+
   config(): void {
     this.router.get("/", conductorController.list);
     this.router.post("/", conductorController.create);
