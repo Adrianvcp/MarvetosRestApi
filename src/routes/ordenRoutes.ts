@@ -14,6 +14,8 @@ class OrdenRoutes {
     this.router.delete("/:id", ordenController.delete);
     //-----------------------------------------------
     this.router.put("/:id", ordenController.put);
+
+    //this.router.get("/cond/:id", ordenController.Buscar);
     //------------------------------------------------
     /*esta es la actualizacion del viernes */
   }

@@ -17,12 +17,29 @@ class OrdenController {
   }
 //------------------------------------------
   public async put(req: Request, res: Response): Promise<void> {
-    await pool.query("update detCond set ? where detCond.idOrden = ?", [
+    await pool.query("update orden set ? where orden.idOrden = ?", [
       req.body,
       req.params.id,
     ]);
     res.json({ text: "El estado fue asctualizado" });
   }
+
+
+
+  //------------------------------------------------------------
+
+  public async Buscar(req: Request, res: Response): Promise<any> {
+    const data = await pool.query(
+      "select * from detCond where detCond.idOrden = ?",
+      [req.params.id],
+
+      (err, result, field) => {
+        if (!err) {
+          res.json(result);
+        }
+      }
+    );
+  } 
 //------------------------------------------------
   public async list(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
