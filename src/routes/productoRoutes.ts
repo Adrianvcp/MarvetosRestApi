@@ -10,12 +10,16 @@ class ProductoRoutes {
   config(): void {
     this.router.post("/", productoController.create);
     this.router.get("/", productoController.list);
+    
     this.router.get("/lista", productoController.listThree);
     this.router.put("/:id", productoController.put);
     this.router.delete("/:id", productoController.delete);
     this.router.get("/:id", productoController.listCate);
-    //this.router.get("/:name", productoController.getOne);
+   
     this.router.get("/detalle/:id", productoController.getOne);
+    //Busqueda de producto
+    this.router.get("/produc/form/ASC", productoController.listA);
+
   }
 }
 

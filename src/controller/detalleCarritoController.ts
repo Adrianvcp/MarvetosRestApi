@@ -29,6 +29,37 @@ class DetalleCarritoController {
     );
     res.json({ text: "Detalle carrito actualizado " });
   }
+
+  
+  //seleccionar por detalleVenta
+  public async listCarrito(req: Request, res: Response): Promise<void> {
+    const data = await pool.query(
+      "SELECT * FROM detallecarrito where detallecarrito.idOrden=?",
+      [req.params.id],
+      (err, result, field) => {
+        if (!err) {
+          res.json(result);
+        }
+      }
+    );
+  }
+
+  //seleccion de detalleCarrito con sus productos
+  public async BuscarDetalle(req: Request, res: Response): Promise<any> {
+    const data = await pool.query(
+      "SELECT detallecarrito.idOrden, producto.name as Productos,detallecarrito.cantProducto, unidad.name as unidades FROM `detallecarrito` INNER JOIN producto ON producto.idProducto = detallecarrito.idProducto INNER JOIN unidad ON unidad.idUnidad = producto.idUnidad where detallecarrito.idOrden=?",[req.params.id],
+
+      (err, result, field) => {
+        if (!err) {
+          res.json(result);
+        }
+      }
+    );
+  } 
+
+
+
+
   //eliminar producto
   /*public async delete(req: Request, res: Response): Promise<void>{
         await pool.query("delete from detallecarrito where detallecarrito.idDetalleCarrito = ?",

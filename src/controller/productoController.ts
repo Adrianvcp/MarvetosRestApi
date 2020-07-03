@@ -13,7 +13,22 @@ class ProductoController {
   //listar los productos
   public async list(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
-      "select *from producto",
+      "select *from producto ", 
+     // "select *from producto order by producto.precio DESC",
+     // "select *from producto order by producto.precio ASC",
+      (err, result, field) => {
+        if (!err) {
+          res.json(result);
+        }
+      }
+    );
+  }
+
+  public async listA(req: Request, res: Response): Promise<void> {
+    const data = await pool.query(
+     
+      "select *from producto order by producto.precio DESC",
+     // "select *from producto order by producto.precio ASC",
       (err, result, field) => {
         if (!err) {
           res.json(result);
@@ -39,8 +54,22 @@ class ProductoController {
     res.json({ text: "El producto " + [req.body.name] + " fue eliminado" });
   }
 
-  //buscar producto
+ 
   public async getOne(req: Request, res: Response): Promise<any> {
+    const data = await pool.query(
+      "select * from producto where producto.idProducto = ?",
+      [req.params.id],
+
+      (err, result, field) => {
+        if (!err) {
+          res.json(result);
+        }
+      }
+    );
+  }
+
+  //Busqueda de producto
+  /* public async Buscar(req: Request, res: Response): Promise<any> {
     const data = await pool.query(
       "select * from producto where producto.name = ?",
       [req.params.name],
@@ -51,7 +80,10 @@ class ProductoController {
         }
       }
     );
-  }
+  } */
+
+
+
 
   //seleccionar por categoria
   public async listCate(req: Request, res: Response): Promise<void> {
@@ -69,7 +101,7 @@ class ProductoController {
   //producto de limite 3
   public async listThree(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
-      "select *from producto  where producto.stock <= 40 limit 6",
+      "select *from producto  where producto.stock <= 30 limit 6",
       (err, result, field) => {
         if (!err) {
           res.json(result);

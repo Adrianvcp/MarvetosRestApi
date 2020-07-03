@@ -8,11 +8,13 @@ class OrdenRoutes {
     this.config();
   }
   config(): void {
-    this.router.get("/", ordenController.list);
+    this.router.get("/", ordenController.listD);
     this.router.get("/gid", ordenController.lastIdOrden);
     this.router.post("/", ordenController.create);
     this.router.delete("/:id", ordenController.delete);
+    //-----------------------------------------------
     this.router.put("/:id", ordenController.put);
+    //------------------------------------------------
     /*esta es la actualizacion del viernes */
   }
 }

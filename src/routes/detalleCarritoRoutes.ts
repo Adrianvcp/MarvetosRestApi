@@ -9,7 +9,9 @@ constructor(){
         this.router.post("/", detallecarritoController.create);
         this.router.get("/", detallecarritoController.list);
         this.router.put("/:id", detallecarritoController.put);
+        this.router.get("/:id", detallecarritoController.listCarrito);
         //this.router.delete("/:id", detallecarritoController.delete);
+        this.router.get("/busqueda/:id", detallecarritoController.BuscarDetalle);
     }
 
 }
