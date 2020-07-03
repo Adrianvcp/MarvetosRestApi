@@ -17,7 +17,7 @@ class OrdenController {
   }
 //------------------------------------------
   public async put(req: Request, res: Response): Promise<void> {
-    await pool.query("update orden set ? where orden.idOrden = ?", [
+    await pool.query("update detCond set ? where detCond.idOrden = ?", [
       req.body,
       req.params.id,
     ]);

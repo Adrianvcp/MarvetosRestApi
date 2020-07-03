@@ -2,7 +2,7 @@ export default {
   database: {
     host: "localhost",
     user: "root",
-    password: "admin",
-    database: "mv2",
+    password: "123456789",
+    database: "marvetosv6",
   },
 };
