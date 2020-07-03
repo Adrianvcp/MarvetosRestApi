@@ -65,6 +65,7 @@ class UserController {
         pass: req.body.pass,
       };
       const infoUser = {
+        id: "",
         nombre: "",
         apellido: "",
         nombrEmpresa: "",
@@ -81,6 +82,7 @@ class UserController {
               console.log("TOKEN");
               infoUser.nombre = result[0].Nombres;
               infoUser.apellido = result[0].Apellidos;
+              infoUser.id = result[0].idUser;
               infoUser.nombrEmpresa = result[0].NombreEmopresa;
               console.log("INFO");
               console.log(infoUser);
@@ -111,7 +113,7 @@ class UserController {
     }
   }
 
-  //---
+  //aa---
 }
 
 const userController = new UserController();
