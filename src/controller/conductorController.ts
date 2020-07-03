@@ -25,7 +25,7 @@ class ConductorController {
   
   public async list(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
-      "select * from conductor",
+      "select * from conductor WHERE conductor.idConductor != 0",
       (err, result, field) => {
         if (!err) {
           res.json(result);

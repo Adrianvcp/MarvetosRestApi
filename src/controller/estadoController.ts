@@ -21,6 +21,7 @@ class EstadoController {
     ]);
     res.json({ text: "Estado modificado" });
   }
+
   
   public async list(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
