@@ -16,7 +16,7 @@ class OrdenRoutes {
     //-----------------------------------------------
     this.router.put("/:id", ordenController.put);
     //------------------------------------------------
-    /*esta es la actualizacion del viernes */
+    /*esta es la actualizacion del vi ernes */
   }
 }
 
