@@ -79,7 +79,7 @@ class UserController {
           if (!err) {
             if (result.length != 0) {
               console.log("Usuario logead o");
-              console.log("TOKEN");
+              console.log("TOKEN ");
               infoUser.nombre = result[0].Nombres;
               infoUser.apellido = result[0].Apellidos;
               infoUser.id = result[0].idUser;
