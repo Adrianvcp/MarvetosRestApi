@@ -69,6 +69,7 @@ class UserController {
         nombre: "",
         apellido: "",
         nombrEmpresa: "",
+        idRol: "",
       };
       console.log(user);
 
@@ -84,6 +85,7 @@ class UserController {
               infoUser.apellido = result[0].Apellidos;
               infoUser.id = result[0].idUser;
               infoUser.nombrEmpresa = result[0].NombreEmopresa;
+              infoUser.idRol = result[0].idRol;
               console.log("INFO");
               console.log(infoUser);
 
@@ -100,7 +102,7 @@ class UserController {
             } else {
               console.log("Usuario no registrado en el sistema");
               var respon = {
-                status: "Usuario nor registrado en el sistema",
+                status: "Usuario no registrado en el sistema",
                 code: 0,
               };
               res.json(respon);
