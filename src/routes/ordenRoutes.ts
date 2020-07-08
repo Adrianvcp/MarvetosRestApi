@@ -9,6 +9,7 @@ class OrdenRoutes {
   }
   config(): void {
     this.router.get("/:id", ordenController.listD);
+    this.router.get("/", ordenController.list);
     this.router.get("/gid", ordenController.lastIdOrden);
     this.router.get("/vendedor/:id", ordenController.getOrdersxSeller);
     this.router.post("/", ordenController.create);
