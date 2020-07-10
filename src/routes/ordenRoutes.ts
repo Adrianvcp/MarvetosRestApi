@@ -19,7 +19,7 @@ class OrdenRoutes {
 
     //this.router.get("/cond/:id", ordenController.Buscar);
     //------------------------------------------------
-    /*esta es la actualizacion del vi e rnes */
+    /*esta es la actualizacio n del vi e rnes */
   }
 }
 
