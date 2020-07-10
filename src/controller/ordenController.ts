@@ -24,8 +24,6 @@ class OrdenController {
     res.json({ text: "El estado fue asctualizado" });
   }
 
-
-
   //------------------------------------------------------------
 
   public async Buscar(req: Request, res: Response): Promise<any> {
@@ -39,8 +37,8 @@ class OrdenController {
         }
       }
     );
-  } 
-//------------------------------------------------
+  }
+  //------------------------------------------------
   public async list(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
       "select * from Orden",
@@ -52,11 +50,17 @@ class OrdenController {
     );
   }
 
+  public async ultimoID(req: Request, res: Response): Promise<void> {
+    console.log("asdasd");
+  }
   public async lastIdOrden(req: Request, res: Response): Promise<void> {
+    console.log("asdasd");
     const data = await pool.query(
       "select max(idOrden) from Orden",
       (err, result, field) => {
         if (!err) {
+          console.log("DATAAAAAA");
+          console.log(result);
           res.json(result);
         }
       }
@@ -79,6 +83,7 @@ class OrdenController {
   }
 
   public async getOrdersxSeller(req: Request, res: Response): Promise<void> {
+    console.log("asdoiahfui");
     const data = await pool.query(
       "SELECT orden.idConductor,estado.Estado as estado, user.Nombres as nombresComprador, user.Apellidos as apellidosComprador, user.NombreEmpresa as nombreEmpresa, orden.direccion, orden.comentario, ubicacion.distrito,vendedor.Nombres as nombresVendedor, vendedor.Apellidos as apellidosVendedor, vendedor.telefono as celularVendedor, formaPago.name as metodoPago, orden.PrecioTotal, orden.idOrden, orden.fechaOrden, orden.PrecioTotal, orden.idPago  FROM orden INNER JOIN estado ON estado.idEstado = orden.idEstado INNER JOIN user ON user.idUser = orden.idUser INNER JOIN rol ON rol.idRol = user.idRol INNER JOIN formapago ON formapago.idPago = orden.idPago INNER JOIN ubicacion ON ubicacion.idUbicacion = orden.idUbicacion INNER JOIN diadescuento ON diadescuento.idDiaDescuento = ubicacion.idDiaDescuento INNER JOIN vendedor ON vendedor.idVendedor = orden.idVendedor WHERE orden.idVendedor = ?",
       [req.params.id],

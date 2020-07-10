@@ -3,6 +3,6 @@ export default {
     host: "localhost",
     user: "root",
     password: "",
-    database: "marvetos6",
+    database: "marvetos11",
   },
 };
