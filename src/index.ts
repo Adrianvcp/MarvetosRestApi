@@ -26,8 +26,9 @@ import ubicacionRoutes from "./routes/ubicacionRoutes";
 import formaPagoRoutes from "./routes/formaPagoRoutes";
 import ordenRoutes from "./routes/ordenRoutes";
 import allRoutes from "./routes/allRoutes";
+import sendemailRoutes from "./routes/sendemailRoutes";
 
-//librerias
+//librerias7
 import morgan from "morgan";
 import cors from "cors";
 
@@ -64,6 +65,7 @@ class Server {
     this.app.use("/api/formaPago", formaPagoRoutes);
     this.app.use("/api/orden", ordenRoutes);
     this.app.use("/api/todo", allRoutes);
+    this.app.use("/api/email", sendemailRoutes);
   }
 
   start(): void {
