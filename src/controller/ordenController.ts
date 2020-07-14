@@ -95,6 +95,20 @@ class OrdenController {
       }
     );
   }
+
+  public async getOrdersxUser(req: Request, res: Response): Promise<void> {
+    //pasados a "orden"
+    const data = await pool.query(
+      "SELECT estado.idEstado, estado.Estado, orden.idConductor,estado.Estado as estado, user.Nombres as nombresComprador, user.Apellidos as apellidosComprador, user.NombreEmpresa as nombreEmpresa, orden.direccion, orden.comentario, ubicacion.distrito,vendedor.Nombres as nombresVendedor, vendedor.Apellidos as apellidosVendedor, vendedor.telefono as celularVendedor, formaPago.name as metodoPago, orden.PrecioTotal, orden.idOrden, orden.fechaOrden, orden.PrecioTotal, orden.idPago  FROM orden INNER JOIN estado ON estado.idEstado = orden.idEstado INNER JOIN user ON user.idUser = orden.idUser INNER JOIN rol ON rol.idRol = user.idRol INNER JOIN formapago ON formapago.idPago = orden.idPago INNER JOIN ubicacion ON ubicacion.idUbicacion = orden.idUbicacion INNER JOIN diadescuento ON diadescuento.idDiaDescuento = ubicacion.idDiaDescuento INNER JOIN vendedor ON vendedor.idVendedor = orden.idVendedor WHERE orden.idUser = ?",
+      [req.params.id],
+
+      (err, result, field) => {
+        if (!err) {
+          res.json(result);
+        }
+      }
+    );
+  }
 }
 const ordenController = new OrdenController();
 export default ordenController;

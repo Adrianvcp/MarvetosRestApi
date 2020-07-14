@@ -9,9 +9,10 @@ class OrdenRoutes {
   }
   config(): void {
     this.router.get("/:id", ordenController.listD);
-
+    //this.router.get("/", ordenController.list);
     this.router.get("/gID/giveme", ordenController.lastIdOrden);
     this.router.get("/vendedor/:id", ordenController.getOrdersxSeller);
+    this.router.get("/usuario/:id", ordenController.getOrdersxUser);
     this.router.post("/", ordenController.create);
     this.router.delete("/:id", ordenController.delete);
     //-----------------------------------------------
@@ -19,7 +20,7 @@ class OrdenRoutes {
 
     //this.router.get("/cond/:id", ordenController.Buscar);
     //------------------------------------------------
-    /*esta es la actualizacio n del vi e rnes */
+    /*esta es la actualizacion del vi ernes */
   }
 }
 
