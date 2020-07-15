@@ -101,7 +101,7 @@ class ProductoController {
   //producto de limite 3
   public async listThree(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
-      "select *from producto  where producto.stock <= 30 limit 6",
+      "select *from producto  where producto.stock <= 40 limit 6",
       (err, result, field) => {
         if (!err) {
           res.json(result);
