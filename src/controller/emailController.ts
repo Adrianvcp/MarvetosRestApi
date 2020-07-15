@@ -30,6 +30,36 @@ class EmailController {
       }
     });
   }
+
+  public async ticket(req: Request, res: Response): Promise<void> {
+    var data = req.body;
+    var transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "pedro.velacc@gmail.com",
+        pass: "72941202Acm",
+      },
+    });
+    var emails = [
+      "pedro.velacc@gmail.com",
+      "pedro.velacc1@hotmail.com",
+      "u201416198@upc.edu.pe",
+    ];
+    const mailOptions = {
+      from: "pedro.velacc@gmail.com",
+      to: emails, //emails que recibiran el correo
+      subject: "Orden #" + data.orderId,
+      html: emailbody.Ticket(data.email, data.problema, data.orderId),
+    };
+    transporter.sendMail(mailOptions, function (err, info) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(info);
+        res.json({ text: "Enviar Mensaje" });
+      }
+    });
+  }
 }
 
 export const emailController = new EmailController();

@@ -9,7 +9,8 @@ class SendEmailRoutes {
   }
 
   config(): void {
-    this.router.post("/", emailController.sendEmail); // enviar correo
+    this.router.post("/", emailController.sendEmail); // enviar correo compra
+    this.router.post("/ticket", emailController.ticket);
   }
 }
 
