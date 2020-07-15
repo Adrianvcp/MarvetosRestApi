@@ -70,6 +70,7 @@ class UserController {
         apellido: "",
         nombrEmpresa: "",
         idRol: "",
+        email: "",
       };
       console.log(user);
 
@@ -79,13 +80,14 @@ class UserController {
         (err, result, field) => {
           if (!err) {
             if (result.length != 0) {
-              console.log("Usuario logead o");
+              console.log("Usuario log ead o");
               console.log("TOKEN");
               infoUser.nombre = result[0].Nombres;
               infoUser.apellido = result[0].Apellidos;
               infoUser.id = result[0].idUser;
               infoUser.nombrEmpresa = result[0].NombreEmopresa;
               infoUser.idRol = result[0].idRol;
+              infoUser.email = result[0].email;
               console.log("INFO");
               console.log(infoUser);
 
