@@ -14,7 +14,8 @@
     "build": "npm run ts:build",
     "prod:serve": "node build/.",
     "start": "npm run build && npm run prod:serve",
-    "tslint": "tslint -c tslint.json -p tsconfig.json"
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC",
