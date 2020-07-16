@@ -132,6 +132,17 @@ class UserController {
     }
   }
 
+  public async getSellers(req: Request, res: Response): Promise<void> {
+    const data = await pool.query(
+      "select * from vendedor",
+      (err, result, field) => {
+        if (!err) {
+          res.json(result);
+        }
+      }
+    );
+  }
+
   //aa---
 }
 

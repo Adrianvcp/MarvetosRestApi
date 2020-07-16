@@ -9,6 +9,7 @@ class UserRouter {
 
   config(): void {
     this.router.get("/", userController.getAllUsers);
+    this.router.get("/sellers", userController.getSellers);
     this.router.post("/", userController.create);
     this.router.delete("/:id", userController.delete);
     this.router.put("/:id", userController.update);
