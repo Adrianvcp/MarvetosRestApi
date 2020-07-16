@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node build/.",
     "build": "tsc",
-    "postinstall": "npm run build",
+    "tsc": "tsc",
+    "postinstall": "npm run tsc",
     "dev": "nodemon build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
