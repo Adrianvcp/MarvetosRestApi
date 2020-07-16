@@ -11,6 +11,7 @@ class AllRoutes {
   config(): void {
     this.router.get("/", allController.list);
     this.router.get("/:id", allController.getOneBuy);
+
   }
 }
 

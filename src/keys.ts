@@ -1,8 +1,8 @@
 export default {
   database: {
-    host: "localhost",
-    user: "root",
-    password: "123456789",
-    database: "marvetosv9",
+    host: "gator4163.hostgator.com",
+    user: "kato3445_marveto",
+    password: "marvetos@123",
+    database: "kato3445_marvetosDB",
   },
 };
