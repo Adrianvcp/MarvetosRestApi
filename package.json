@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node build/.",
     "build": "tsc -w",
+    "postinstall": "npm run build",
     "dev": "nodemon build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
