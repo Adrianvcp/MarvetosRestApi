@@ -13,6 +13,7 @@ class UserRouter {
     this.router.delete("/:id", userController.delete);
     this.router.put("/:id", userController.update);
     this.router.post("/login", userController.login);
+    this.router.post("/email", userController.esEmailRepetido);
   }
 }
 

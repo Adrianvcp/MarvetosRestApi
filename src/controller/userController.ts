@@ -117,6 +117,21 @@ class UserController {
     }
   }
 
+
+  public async esEmailRepetido(req: Request, res: Response): Promise<void> {
+    try {
+      console.log(req.body)
+      await pool.query("SELECT * FROM User u where u.email=?",[req.body.email], (err, result, field) => {
+        if (!err) {
+          res.json(result);
+          console.log(result);
+        }
+      });
+    } catch (error) {
+      res.json({ Error: error });
+    }
+  }
+
   //aa---
 }
 
