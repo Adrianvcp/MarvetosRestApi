@@ -9,7 +9,7 @@
   "scripts": {
     "start": "npm run serve",
     "serve": "node build/.",
-    "build": "tsc -w ",
+    "build": "tsc",
     "postinstall": "npm run build"
   },
   "author": "",
