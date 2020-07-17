@@ -42,7 +42,7 @@ class Server {
   }
 
   config(): void {
-    this.app.set("port", process.env.PORT || 3050);
+    this.app.set("port", process.env.PORT || 5000);
     this.app.use(morgan("dev")); // permite vizulizar las peticiones al servidor
     this.app.use(cors());
     this.app.use(express.json()); //permite utilizar archivos json
