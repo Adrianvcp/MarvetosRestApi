@@ -1,13 +1,18 @@
 export default {
   database: {
-    // host: "gator4163.hostgator.com",
-    // user: "kato3445_marveto",
-    // password: "marvetos@123",
-    // database: "kato3445_marvetosDB",
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "marvetos6",
+    host: "us-cdbr-east-02.cleardb.com",
+    user: "bf6bbf3b266593",
+    password: "91db2924",
+    database: "heroku_0240a6dfc8668ba",
   },
 };
-//claves
+
+//claves-asd
+/* export default {
+  database: {
+    host: "localhost",
+    user: "root",
+    password: "123456789",
+    database: "marvetosv9",
+  },
+}; */

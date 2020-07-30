@@ -18,6 +18,9 @@ import productoRoutes from "./routes/productoRoutes";
 //Importamos DetalleCarrito
 import detallecarritoRoutes from "./routes/detalleCarritoRoutes";
 
+//Importamos Marca
+
+
 //Estado,Conductor,Vendedor,Ubicacion,Forma de Pago y Orden
 import estadoRoutes from "./routes/estadoRoutes";
 import conductorRoutes from "./routes/conductorRoutes";
@@ -27,6 +30,7 @@ import formaPagoRoutes from "./routes/formaPagoRoutes";
 import ordenRoutes from "./routes/ordenRoutes";
 import allRoutes from "./routes/allRoutes";
 import sendemailRoutes from "./routes/sendemailRoutes";
+import marcaRoutes from "./routes/marcaRoutes";
 
 //librerias7
 import morgan from "morgan";
@@ -66,6 +70,7 @@ class Server {
     this.app.use("/api/orden", ordenRoutes);
     this.app.use("/api/todo", allRoutes);
     this.app.use("/api/email", sendemailRoutes);
+    this.app.use("/api/marca", marcaRoutes);
   }
 
   start(): void {
