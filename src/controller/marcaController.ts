@@ -32,6 +32,17 @@ class MarcaController {
         );
       }
 
+      public async listFiltro(req: Request, res: Response): Promise<void> {
+        const data = await pool.query(
+            "select producto.name as producto, producto.precio as precio, categoria.name as categoria, marca.name as marca, unidad.name as unidad from producto inner join categoria on producto.idCategoria = categoria.idCategoria inner join marca on producto.idMarca = marca.idMarca inner join unidad on producto.idUnidad = unidad.idUnidad",
+          (err, result, field) => {
+            if (!err) {
+              res.json(result);
+            }
+          }
+        );
+      }
+
 }
 const marcaController = new MarcaController();
 export default marcaController;

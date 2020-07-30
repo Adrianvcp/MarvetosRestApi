@@ -8,10 +8,12 @@ class MarcaRoutes {
     this.config();
   }
   config(): void {
+    this.router.get("/filtro", marcaController.listFiltro);
     this.router.get("/", marcaController.list);
     this.router.post("/", marcaController.create);
     this.router.delete("/:id", marcaController.delete);
     this.router.put("/:id", marcaController.put);
+   
   }
 }
 
