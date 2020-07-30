@@ -6,4 +6,13 @@ export default {
     database: "heroku_0240a6dfc8668ba",
   },
 };
+
 //claves-asd
+/* export default {
+  database: {
+    host: "localhost",
+    user: "root",
+    password: "123456789",
+    database: "marvetosv9",
+  },
+}; */
