@@ -60,7 +60,7 @@ class MarcaController {
 
       public async busqueda(req: Request, res: Response): Promise<void> {
         const data = await pool.query(
-          "select producto.idProducto, producto.name, producto.precio, producto.descripcion, producto.image, producto.stock, categoria.idCategoria, categoria.name as categoria, marca.name as marca  from marca inner join producto on producto.idMarca = marca.idMarca inner join categoria on categoria.idCategoria = producto.idCategoria where producto.name  like '%"  +req.params.car +"%' ",
+          "select producto.idProducto, producto.name as producto, producto.precio, producto.descripcion, producto.image, producto.stock, categoria.idCategoria, categoria.name as categoria, marca.name as marca  from marca inner join producto on producto.idMarca = marca.idMarca inner join categoria on categoria.idCategoria = producto.idCategoria where producto.name  like '%"  +req.params.car +"%' ",
          
             
             (err, result, field) => {
@@ -74,7 +74,7 @@ class MarcaController {
 
       public async busquedaCategoria(req: Request, res: Response): Promise<void> {
         const data = await pool.query(
-          "select producto.idProducto, producto.name, producto.precio, producto.descripcion, producto.image, producto.stock, categoria.idCategoria, categoria.name as categoria, marca.name as marca  from marca inner join producto on producto.idMarca = marca.idMarca inner join categoria on categoria.idCategoria = producto.idCategoria where producto.name  like '%"  +req.params.car +"%' and producto.idCategoria = ? ",
+          "select producto.idProducto, producto.name as producto, producto.precio, producto.descripcion, producto.image, producto.stock, categoria.idCategoria, categoria.name as categoria, marca.name as marca  from marca inner join producto on producto.idMarca = marca.idMarca inner join categoria on categoria.idCategoria = producto.idCategoria where producto.name  like '%"  +req.params.car +"%' and producto.idCategoria = ? ",
           [req.params.cat],
          
             
