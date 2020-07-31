@@ -88,7 +88,8 @@ class ProductoController {
   //seleccionar por categoria
   public async listCate(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
-      "SELECT * FROM producto where producto.idCategoria=?",
+      
+      "select producto.idProducto, producto.idCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad where producto.idCategoria=?", 
       [req.params.id],
       (err, result, field) => {
         if (!err) {
