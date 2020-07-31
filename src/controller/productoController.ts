@@ -13,7 +13,7 @@ class ProductoController {
   //listar los productos
   public async list(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
-      " select producto.idProducto, producto.idCategoria, producto.name, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad; ", 
+      "select producto.idProducto, producto.idCategoria, producto.name, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad; ", 
      // "select *from producto order by producto.precio DESC",
      // "select *from producto order by producto.precio ASC",
       (err, result, field) => {
