@@ -20,11 +20,7 @@ class EmailController {
 
       const mailOptions = {
         from: "pedrovc11@hotmail.com",
-        to: [
-          "pedro.velacc1@hotmail.com",
-          "pedro.velacc@gmail.com",
-          "pedro.velacc@yopmail.com",
-        ],
+        to: data.email,
         subject: "Tu orden ha sido recibida exitosamente.",
         html: emailbody.HtmlEmail(data.direccion, data.distrito, data.Orden),
       };
