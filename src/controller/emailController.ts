@@ -9,18 +9,18 @@ class EmailController {
   public async sendEmail(req: Request, res: Response): Promise<void> {
     try {
       var data = req.body;
-      var transporter = nodemailer.createTransport({
-        service: "gmail",
+      const transporter = nodemailer.createTransport({
+        service: "hotmail",
         auth: {
-          user: "pedro.velacc@gmail.com",
-          pass: "72941202#@#@Acm",
+          user: "pedro.velacc1@hotmail.com",
+          pass: "72941202acm",
         },
       });
       console.log(transporter);
 
       const mailOptions = {
         from: data.email,
-        to: ["pedro.velacc@gmail.com"],
+        to: ["pedro.velacc@yopmail.com"],
         subject: "Tu orden ha sido recibida exitosamente.",
         html: emailbody.HtmlEmail(data.direccion, data.distrito, data.Orden),
       };
