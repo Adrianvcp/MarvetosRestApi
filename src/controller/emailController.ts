@@ -12,15 +12,19 @@ class EmailController {
       const transporter = nodemailer.createTransport({
         service: "hotmail",
         auth: {
-          user: "pedro.velacc1@hotmail.com",
-          pass: "72941202acm",
+          user: "pedrovc11@hotmail.com",
+          pass: "pedro123",
         },
       });
       console.log(transporter);
 
       const mailOptions = {
-        from: data.email,
-        to: ["pedro.velacc@yopmail.com"],
+        from: "pedrovc11@hotmail.com",
+        to: [
+          "pedro.velacc1@hotmail.com",
+          "pedro.velacc@gmail.com",
+          "pedro.velacc@yopmail.com",
+        ],
         subject: "Tu orden ha sido recibida exitosamente.",
         html: emailbody.HtmlEmail(data.direccion, data.distrito, data.Orden),
       };
