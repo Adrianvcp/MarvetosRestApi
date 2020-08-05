@@ -13,9 +13,9 @@ class ProductoController {
   //listar los productos
   public async list(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
-      "select producto.idProducto, producto.idCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad; ", 
-     // "select *from producto order by producto.precio DESC",
-     // "select *from producto order by producto.precio ASC",
+    //  "select producto.idProducto, producto.idCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad; ", 
+     "  select producto.idProducto, producto.idSubCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad ",
+     
       (err, result, field) => {
         if (!err) {
           res.json(result);
@@ -89,7 +89,8 @@ class ProductoController {
   public async listCate(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
       
-      "select producto.idProducto, producto.idCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad where producto.idCategoria=?", 
+     // "select producto.idProducto, producto.idCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad where producto.idCategoria=?", 
+     "select producto.idProducto, producto.idSubCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad where producto.idSubCategoria=? ",
       [req.params.id],
       (err, result, field) => {
         if (!err) {
