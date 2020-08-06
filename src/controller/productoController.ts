@@ -129,8 +129,8 @@ class ProductoController {
   public async listCateSub(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
       
-    "select producto.idProducto, producto.idSubCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad inner join subcategoria on producto.idSubCategoria = subcategoria.idSubCategoria where subcategoria.idCategoria = ? and subcategoria.idSubCategoria = ?",
-     [req.params.idcat,req.params.idsub],
+    "select producto.idProducto, producto.idSubCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad inner join subcategoria on producto.idSubCategoria = subcategoria.idSubCategoria where subcategoria.idCategoria = ? and subcategoria.T_NameCategoria = ?",
+     [req.params.idcat,req.params.namesub],
       (err, result, field) => {
         if (!err) {
           res.json(result);
