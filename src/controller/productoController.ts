@@ -90,7 +90,7 @@ class ProductoController {
     const data = await pool.query(
       
      // "select producto.idProducto, producto.idCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad where producto.idCategoria=?", 
-    "select producto.idProducto, producto.idSubCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad inner join subcategoria on producto.idSubCategoria = subcategoria.idSubCategoria where subcategoria.idCategoria = ?",
+    "select producto.idProducto, subcategoria.idCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad inner join subcategoria on producto.idSubCategoria = subcategoria.idSubCategoria where subcategoria.idCategoria = ?",
      [req.params.id],
       (err, result, field) => {
         if (!err) {
