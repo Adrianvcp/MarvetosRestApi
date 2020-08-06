@@ -20,6 +20,7 @@ class ProductoRoutes {
     //Busqueda de producto
     this.router.get("/produc/form/ASC", productoController.listA);
     this.router.get("/produc/form/ASC/sub/:id", productoController.listSub);
+    this.router.get("/produc/form/ASC/cat/sub/:idcat/:idsub", productoController.listCateSub);
   }
 }
 
