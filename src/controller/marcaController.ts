@@ -77,8 +77,24 @@ class MarcaController {
       public async busquedaCategoria(req: Request, res: Response): Promise<void> {
         const data = await pool.query(
          // "select producto.idProducto, producto.name as producto, producto.precio, producto.descripcion, producto.image, producto.stock, categoria.idCategoria, categoria.name as categoria, marca.name as marca  from marca inner join producto on producto.idMarca = marca.idMarca inner join categoria on categoria.idCategoria = producto.idCategoria where producto.name  like '%"  +req.params.car +"%' and producto.idCategoria = ? ",
-          "select producto.idProducto, producto.name as producto, producto.precio, producto.descripcion, producto.image,unidad.name as unidades, producto.stock, subcategoria.idSubCategoria, subcategoria.T_NameCategoria as subcategoria, marca.name as marca, categoria.idCategoria, categoria.name as categoria from marca inner join producto on producto.idMarca = marca.idMarca inner join subcategoria on subcategoria.idSubCategoria = producto.idSubCategoria inner join unidad on producto.idUnidad = unidad.idUnidad inner join categoria on categoria.idCategoria = subcategoria.idCategoria where producto.name like '%"  +req.params.car +"%' and producto.idSubCategoria = ? " ,
+          "select producto.idProducto, producto.name as producto, producto.precio, producto.descripcion, producto.image,unidad.name as unidades, producto.stock, subcategoria.idSubCategoria, subcategoria.T_NameCategoria as subcategoria, marca.name as marca, categoria.idCategoria, categoria.name as categoria from marca inner join producto on producto.idMarca = marca.idMarca inner join subcategoria on subcategoria.idSubCategoria = producto.idSubCategoria inner join unidad on producto.idUnidad = unidad.idUnidad inner join categoria on categoria.idCategoria = subcategoria.idCategoria where producto.name like '%"  +req.params.car +"%' and subcategoria.idCategoria = ? " ,
           [req.params.cat],
+         
+            
+            (err, result, field) => {
+            if (!err) {
+              res.json(result);
+            }
+          }
+        );
+      }
+
+
+      public async busquedaxCateSub(req: Request, res: Response): Promise<void> {
+        const data = await pool.query(
+         // "select producto.idProducto, producto.name as producto, producto.precio, producto.descripcion, producto.image, producto.stock, categoria.idCategoria, categoria.name as categoria, marca.name as marca  from marca inner join producto on producto.idMarca = marca.idMarca inner join categoria on categoria.idCategoria = producto.idCategoria where producto.name  like '%"  +req.params.car +"%' and producto.idCategoria = ? ",
+          "select producto.idProducto, producto.name as producto, producto.precio, producto.descripcion, producto.image,unidad.name as unidades, producto.stock, subcategoria.idSubCategoria, subcategoria.T_NameCategoria as subcategoria, marca.name as marca, categoria.idCategoria, categoria.name as categoria from marca inner join producto on producto.idMarca = marca.idMarca inner join subcategoria on subcategoria.idSubCategoria = producto.idSubCategoria inner join unidad on producto.idUnidad = unidad.idUnidad inner join categoria on categoria.idCategoria = subcategoria.idCategoria where producto.name like '%"  +req.params.car +"%' and subcategoria.idCategoria = ? and subcategoria.idSubCategoria = ?" ,
+          [req.params.cat,req.params.sub],
          
             
             (err, result, field) => {

@@ -9,6 +9,7 @@ class MarcaRoutes {
   }
   config(): void {
     this.router.get("/buscar/producto/categoria/prod/:car/:cat", marcaController.busquedaCategoria);
+    this.router.get("/buscar/producto/categoria/prod/sub/:car/:cat/:sub", marcaController.busquedaxCateSub);
     this.router.get("/buscar/producto/categoria/:car", marcaController.busqueda);
     this.router.get("/filtro/marca/:marca/:ids", marcaController.listFiltroMarca);
     this.router.get("/filtro/:id", marcaController.listFiltro);
