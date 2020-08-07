@@ -73,7 +73,7 @@ class Server {
     this.app.use("/api/todo", allRoutes);
     this.app.use("/api/email", sendemailRoutes);
     this.app.use("/api/marca", marcaRoutes);
-    this.app.use("/api/subCategoriaRoutes", subCategoriaRoutes);
+    this.app.use("/api/subCategoria", subCategoriaRoutes);
     this.app.use("/api/unidad", unidadRoutes);
   }
 
