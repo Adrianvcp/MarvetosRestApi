@@ -32,6 +32,7 @@ import allRoutes from "./routes/allRoutes";
 import sendemailRoutes from "./routes/sendemailRoutes";
 import marcaRoutes from "./routes/marcaRoutes";
 import subCategoriaRoutes from "./routes/subCategoriaRoutes";
+import  unidadRoutes from "./routes/unidadRoutes";
 
 //librerias7
 import morgan from "morgan";
@@ -73,6 +74,7 @@ class Server {
     this.app.use("/api/email", sendemailRoutes);
     this.app.use("/api/marca", marcaRoutes);
     this.app.use("/api/subCategoriaRoutes", subCategoriaRoutes);
+    this.app.use("/api/unidad", unidadRoutes);
   }
 
   start(): void {
