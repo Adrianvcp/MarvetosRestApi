@@ -115,7 +115,7 @@ class ProductoController {
   
   public async listSub(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
-      "select DISTINCT subcategoria.T_NameCategoria, subcategoria.idSubcategoria as subcategoria from producto inner join unidad on producto.idUnidad = unidad.idUnidad inner join subcategoria on producto.idSubCategoria = subcategoria.idSubCategoria where subcategoria.idCategoria = ?     ",
+      "select DISTINCT subcategoria.T_NameCategoria as subcategoria, subcategoria.idSubcategoria from producto inner join unidad on producto.idUnidad = unidad.idUnidad inner join subcategoria on producto.idSubCategoria = subcategoria.idSubCategoria where subcategoria.idCategoria = ?     ",
       [req.params.id],
       (err, result, field) => {
         if (!err) {
