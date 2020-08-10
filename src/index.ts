@@ -20,7 +20,6 @@ import detallecarritoRoutes from "./routes/detalleCarritoRoutes";
 
 //Importamos Marca
 
-
 //Estado,Conductor,Vendedor,Ubicacion,Forma de Pago y Orden
 import estadoRoutes from "./routes/estadoRoutes";
 import conductorRoutes from "./routes/conductorRoutes";
@@ -37,6 +36,8 @@ import  unidadRoutes from "./routes/unidadRoutes";
 //librerias7
 import morgan from "morgan";
 import cors from "cors";
+import multer from "multer";
+import path from "path";
 
 class Server {
   public app: Application;
@@ -47,12 +48,25 @@ class Server {
     this.routes();
   }
 
+  //Middlewares
   config(): void {
+    const storage = multer.diskStorage({
+      destination: path.join(__dirname, "/public/uploads"),
+      filename: (req, file, cb) => {
+        cb(null, file.originalname);
+      },
+    });
+
     this.app.set("port", process.env.PORT || 5000);
     this.app.use(morgan("dev")); // permite vizulizar las peticiones al servidor
     this.app.use(cors());
     this.app.use(express.json()); //permite utilizar archivos json
     this.app.use(express.urlencoded({ extended: false })); //formularios
+    this.app.use(
+      multer({ storage, dest: path.join(__dirname, "public/uploads") }).single(
+        "file"
+      )
+    );
   }
 
   //rutas

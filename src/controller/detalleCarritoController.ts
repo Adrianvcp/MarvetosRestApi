@@ -13,7 +13,7 @@ class DetalleCarritoController {
   //listar los detalle del carrito
   public async list(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
-      "select *from detallecarrito",
+      "select * from detallecarrito",
       (err, result, field) => {
         if (!err) {
           res.json(result);
