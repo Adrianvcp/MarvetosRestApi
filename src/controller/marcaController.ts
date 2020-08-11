@@ -45,12 +45,50 @@ class MarcaController {
         );
       }
 
+      public async listFiltro(req: Request, res: Response): Promise<void> {
+        const data = await pool.query(
+            "select DISTINCT marca.name as marca from producto inner join subcategoria on producto.idSubCategoria = subcategoria.idSubCategoria inner join marca on producto.idMarca = marca.idMarca inner join unidad on producto.idUnidad = unidad.idUnidad where subcategoria.idCategoria=?",
+            [req.params.id],
+            (err, result, field) => {
+            if (!err) {
+              res.json(result);
+            }
+          }
+        );
+      }
+
+      public async listFiltroSubcat(req: Request, res: Response): Promise<void> {
+        const data = await pool.query(
+            "select DISTINCT marca.name as marca, subcategoria.idSubCategoria from producto inner join subcategoria on producto.idSubCategoria = subcategoria.idSubCategoria inner join marca on producto.idMarca = marca.idMarca inner join unidad on producto.idUnidad = unidad.idUnidad where subcategoria.idSubCategoria=?",
+            [req.params.id],
+            (err, result, field) => {
+            if (!err) {
+              res.json(result);
+            }
+          }
+        );
+      }
+
 
       public async listFiltroMarca(req: Request, res: Response): Promise<void> {
         const data = await pool.query(
             //"select producto.idProducto, producto.name as producto, producto.precio, producto.descripcion, producto.image,unidad.name as unidades, producto.stock, categoria.idCategoria, categoria.name as categoria, marca.name as marca  from marca inner join producto on producto.idMarca = marca.idMarca inner join categoria on categoria.idCategoria = producto.idCategoria inner join unidad on producto.idUnidad = unidad.idUnidad where marca.name = ? and categoria.idCategoria = ?  ",
             "select producto.idProducto, producto.name as producto, producto.precio, producto.descripcion, producto.image,unidad.name as unidades, producto.stock, subcategoria.idSubCategoria, subcategoria.T_NameCategoria as subcategoria, marca.name as marca, categoria.idCategoria, categoria.name as categoria from marca inner join producto on producto.idMarca = marca.idMarca inner join subcategoria on subcategoria.idSubCategoria = producto.idSubCategoria inner join unidad on producto.idUnidad = unidad.idUnidad inner join categoria on categoria.idCategoria = subcategoria.idCategoria where marca.name = ? and subcategoria.idCategoria = ? ",
             [req.params.marca,req.params.ids],
+            
+            (err, result, field) => {
+            if (!err) {
+              res.json(result);
+            }
+          }
+        );
+      }
+
+      public async listFiltroMarcaSubcat(req: Request, res: Response): Promise<void> {
+        const data = await pool.query(
+            //"select producto.idProducto, producto.name as producto, producto.precio, producto.descripcion, producto.image,unidad.name as unidades, producto.stock, categoria.idCategoria, categoria.name as categoria, marca.name as marca  from marca inner join producto on producto.idMarca = marca.idMarca inner join categoria on categoria.idCategoria = producto.idCategoria inner join unidad on producto.idUnidad = unidad.idUnidad where marca.name = ? and categoria.idCategoria = ?  ",
+            "select producto.idProducto, producto.name as producto, producto.precio, producto.descripcion, producto.image,unidad.name as unidades, producto.stock, subcategoria.idSubCategoria, subcategoria.T_NameCategoria as subcategoria, marca.name as marca, categoria.idCategoria, categoria.name as categoria from marca inner join producto on producto.idMarca = marca.idMarca inner join subcategoria on subcategoria.idSubCategoria = producto.idSubCategoria inner join unidad on producto.idUnidad = unidad.idUnidad inner join categoria on categoria.idCategoria = subcategoria.idCategoria where marca.name = ? and subcategoria.idCategoria = ? and subcategoria.idSubCategoria = ?",
+            [req.params.marca,req.params.idcat,req.params.idsub],
             
             (err, result, field) => {
             if (!err) {
