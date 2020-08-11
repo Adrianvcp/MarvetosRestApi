@@ -46,7 +46,7 @@ class DetalleCarritoController {
   //seleccion de detalleCarrito con sus productos
   public async BuscarDetalle(req: Request, res: Response): Promise<any> {
     const data = await pool.query(
-      "SELECT detallecarrito.idOrden, producto.name as Productos,detallecarrito.cantProducto, unidad.name as unidades FROM `detallecarrito` INNER JOIN producto ON producto.idProducto = detallecarrito.idProducto INNER JOIN unidad ON unidad.idUnidad = producto.idUnidad where detallecarrito.idOrden=?",
+      "SELECT detallecarrito.idOrden, producto.name as Productos,detallecarrito.cantProducto,detallecarrito.TNote as nota, unidad.name as unidades FROM `detallecarrito` INNER JOIN producto ON producto.idProducto = detallecarrito.idProducto INNER JOIN unidad ON unidad.idUnidad = producto.idUnidad where detallecarrito.idOrden=?",
       [req.params.id],
       (err, result, field) => {
         if (!err) {
