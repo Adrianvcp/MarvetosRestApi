@@ -47,8 +47,8 @@ class MarcaController {
 
       public async listFiltroSubcat(req: Request, res: Response): Promise<void> {
         const data = await pool.query(
-            "select DISTINCT marca.name as marca, subcategoria.idSubCategoria from producto inner join subcategoria on producto.idSubCategoria = subcategoria.idSubCategoria inner join marca on producto.idMarca = marca.idMarca inner join unidad on producto.idUnidad = unidad.idUnidad where subcategoria.idSubCategoria=?",
-            [req.params.id],
+            "select DISTINCT marca.name as marca, subcategoria.idSubCategoria from producto inner join subcategoria on producto.idSubCategoria = subcategoria.idSubCategoria inner join marca on producto.idMarca = marca.idMarca inner join unidad on producto.idUnidad = unidad.idUnidad where subcategoria.idCategoria=? and subcategoria.idSubCategoria=?",
+            [req.params.idcat,req.params.idsub],
             (err, result, field) => {
             if (!err) {
               res.json(result);
