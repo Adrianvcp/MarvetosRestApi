@@ -152,9 +152,9 @@ class EmailController {
       console.log("----------------");
       const mailOptions = {
         from: "pedrovc11@hotmail.com",
-        to: req.params.email,
+        to: "pedro.velacc@gmail.com",
         subject: "Nueva cotizacion",
-        html: emailbody.HtmlEmail("data.direccion", "data.distrito", 12312),
+        html: emailbody.cotizacion(req.params.email),
         attachments: [
           {
             filename: req.file.filename,
