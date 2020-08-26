@@ -24,12 +24,24 @@ class CotizacionController {
     res.json({ Resultado: "cotizacion eliminado de manera satisfactoria." });
   }
 
-  public async listar(req: Request, res: Response): Promise<void> {
+ /*  public async listar(req: Request, res: Response): Promise<void> {
     await pool.query("SELECT * FROM Cotizacion", (err, result, field) => {
       if (!err) {
         res.json(result);
       }
     });
+  } */
+
+  public async listar(req: Request, res: Response): Promise<void> {
+    const data = await pool.query(
+      "SELECT * FROM Cotizacion WHERE Cotizacion.idUser = ? ORDER BY Cotizacion.idUser DESC",
+      [req.params.id],
+      (err, result, field) => {
+        if (!err) {
+          res.json(result);
+        }
+      }
+    );
   }
 
   public async put(req: Request, res: Response): Promise<void> {
