@@ -24,13 +24,13 @@ class CotizacionController {
     res.json({ Resultado: "cotizacion eliminado de manera satisfactoria." });
   }
 
- /*  public async listar(req: Request, res: Response): Promise<void> {
+  public async allListar(req: Request, res: Response): Promise<void> {
     await pool.query("SELECT * FROM Cotizacion", (err, result, field) => {
       if (!err) {
         res.json(result);
       }
     });
-  } */
+  }
 
   public async listar(req: Request, res: Response): Promise<void> {
     const data = await pool.query(

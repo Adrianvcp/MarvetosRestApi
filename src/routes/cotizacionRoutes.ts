@@ -9,6 +9,7 @@ class CotizacionRoutes {
   }
 
   config(): void {
+    this.router.get("/all", cotizacionController.allListar);
     this.router.get("/:id", cotizacionController.listar); // listar todas las categorias
     this.router.post("/", cotizacionController.create); //insertando categoria
     this.router.delete("/:id", cotizacionController.delete);
