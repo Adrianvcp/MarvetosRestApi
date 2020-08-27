@@ -121,13 +121,15 @@ class EmailController {
           cb(null, file.originalname);
         },
       });
-
       const uploadImage = multer({
         storage,
         limits: { fileSize: 1000000 },
-      }).single("image");
+      }).single("file");
 
       uploadImage(req, res, (err: any) => {
+        console.log("------");
+        console.log(err);
+        console.log("------");
         if (err) {
           err.message = "The file is so heavy for my service";
           return res.send(err);
@@ -135,42 +137,7 @@ class EmailController {
         console.log(req.file);
         console.log("antes");
 
-        res.send({ data: "uploaded" });
-      });
-
-      console.log("email :" + req.params.email);
-      var data = req.params.email;
-      const transporter = nodemailer.createTransport({
-        service: "hotmail",
-        auth: {
-          user: "pedrovc11@hotmail.com",
-          pass: "pedro123",
-        },
-      });
-      console.log("----------------");
-      console.log(req.file);
-      console.log("----------------");
-      const mailOptions = {
-        from: "pedrovc11@hotmail.com",
-        to: "pedro.velacc@gmail.com",
-        subject: "Nueva cotizacion",
-        html: emailbody.cotizacion(req.params.email),
-        attachments: [
-          {
-            filename: req.file.filename,
-            path: req.file.path,
-            contentType:
-              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          },
-        ],
-      };
-      transporter.sendMail(mailOptions, function (err, info) {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log(info);
-          res.json({ text: "Enviar Mensaje" });
-        }
+        res.send({ data: "usploaded" });
       });
     } catch (error) {
       res.json({ error });
