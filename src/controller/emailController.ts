@@ -121,25 +121,54 @@ class EmailController {
           cb(null, file.originalname);
         },
       });
+
       const uploadImage = multer({
         storage,
         limits: { fileSize: 1000000 },
       }).single("file");
 
       uploadImage(req, res, (err: any) => {
-        console.log("------");
-        console.log(err);
-        console.log("------");
         if (err) {
           err.message = "The file is so heavy for my service";
           return res.send(err);
         }
         console.log(req.file);
-        console.log("antes");
+        res.send({ data: "uploaded" });
+      });
 
-        res.send({ data: "usploaded" });
+      var data = req.params.email;
+      const transporter = nodemailer.createTransport({
+        service: "hotmail",
+        auth: {
+          user: "pedrovc11@hotmail.com",
+          pass: "pedro123",
+        },
+      });
+
+      const mailOptions = {
+        from: "pedrovc11@hotmail.com",
+        to: data,
+        subject: "Nueva cotizacion",
+        html: emailbody.cotizacion(req.params.email),
+        attachments: [
+          {
+            filename: req.file.filename,
+            path: req.file.path,
+            contentType:
+              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          },
+        ],
+      };
+      transporter.sendMail(mailOptions, function (err, info) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(info);
+          res.json({ text: "Enviar Mensaje" });
+        }
       });
     } catch (error) {
+      console.log("ENTRO ERRO");
       res.json({ error });
     }
   }

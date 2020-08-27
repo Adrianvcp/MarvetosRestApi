@@ -31,8 +31,9 @@ import allRoutes from "./routes/allRoutes";
 import sendemailRoutes from "./routes/sendemailRoutes";
 import marcaRoutes from "./routes/marcaRoutes";
 import subCategoriaRoutes from "./routes/subCategoriaRoutes";
-import  unidadRoutes from "./routes/unidadRoutes";
-import cotizacionRoutes  from "./routes/cotizacionRoutes";
+import unidadRoutes from "./routes/unidadRoutes";
+import cotizacionRoutes from "./routes/cotizacionRoutes";
+
 //librerias7
 import morgan from "morgan";
 import cors from "cors";
@@ -63,7 +64,7 @@ class Server {
     this.app.use(express.json()); //permite utilizar archivos json
     this.app.use(express.urlencoded({ extended: false })); //formularios
     this.app.use(
-      multer({ storage, dest: path.join(__dirname, "public/uploads") }).single(
+      multer({ storage, dest: path.join(__dirname, "/public/uploads") }).single(
         "file"
       )
     );
@@ -87,9 +88,9 @@ class Server {
     this.app.use("/api/todo", allRoutes);
     this.app.use("/api/email", sendemailRoutes);
     this.app.use("/api/marca", marcaRoutes);
+    this.app.use("/api/cotizacion", cotizacionRoutes);
     this.app.use("/api/subCategoria", subCategoriaRoutes);
     this.app.use("/api/unidad", unidadRoutes);
-    this.app.use("/api/cotizacion", cotizacionRoutes);
   }
 
   start(): void {
