@@ -147,7 +147,7 @@ class EmailController {
 
       const mailOptions = {
         from: "pedrovc11@hotmail.com",
-        to: data,
+        to: "consultas@marvetos.com",
         subject: "Nueva cotizacion",
         html: emailbody.cotizacion(req.params.email),
         attachments: [
