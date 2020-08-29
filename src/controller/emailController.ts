@@ -140,13 +140,17 @@ class EmailController {
       const transporter = nodemailer.createTransport({
         service: "hotmail",
         auth: {
-          user: "pedrovc11@hotmail.com",
-          pass: "pedro123",
+          user: "marvetos@outlook.com",
+          pass: "@correo@marveto",
         },
       });
 
       const mailOptions = {
+<<<<<<< HEAD
         from: "pedrovc11@hotmail.com",
+=======
+        from: "marvetos@outlook.com",
+>>>>>>> ultimo
         to: "consultas@marvetos.com",
         subject: "Nueva cotizacion",
         html: emailbody.cotizacion(req.params.email),

@@ -3,10 +3,9 @@ export default {
     host: "167.114.0.97",
     user: "udrwxrda_marve",
     password: "&!Tgr(-HP?of",
-    database: "udrwxrda_marvetosV1",
+    database: "udrwxrda_marvetosV2",
   },
 };
-
 //credencial del hosting Nice
 
 /* export default {
@@ -16,4 +15,5 @@ export default {
     password: "91db2924",
     database: "heroku_0240a6dfc8668ba",
   },
-}; */
+};
+ */

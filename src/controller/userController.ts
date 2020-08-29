@@ -10,7 +10,7 @@ class UserController {
   //metodos - CRUD
   public async getAllUsers(req: Request, res: Response): Promise<void> {
     try {
-      await pool.query("SELECT * FROM User", (err, result, field) => {
+      await pool.query("SELECT * FROM user", (err, result, field) => {
         if (!err) {
           res.json(result);
         }
@@ -117,16 +117,19 @@ class UserController {
     }
   }
 
-
   public async esEmailRepetido(req: Request, res: Response): Promise<void> {
     try {
-      console.log(req.body)
-      await pool.query("SELECT * FROM User u where u.email=?",[req.body.email], (err, result, field) => {
-        if (!err) {
-          res.json(result);
-          console.log(result);
+      console.log(req.body);
+      await pool.query(
+        "SELECT * FROM user u where u.email=?",
+        [req.body.email],
+        (err, result, field) => {
+          if (!err) {
+            res.json(result);
+            console.log(result);
+          }
         }
-      });
+      );
     } catch (error) {
       res.json({ Error: error });
     }
