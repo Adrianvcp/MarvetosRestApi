@@ -146,11 +146,7 @@ class EmailController {
       });
 
       const mailOptions = {
-<<<<<<< HEAD
-        from: "pedrovc11@hotmail.com",
-=======
         from: "marvetos@outlook.com",
->>>>>>> ultimo
         to: "consultas@marvetos.com",
         subject: "Nueva cotizacion",
         html: emailbody.cotizacion(req.params.email),
