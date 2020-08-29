@@ -13,9 +13,9 @@ class ProductoController {
   //listar los productos
   public async list(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
-    //  "select producto.idProducto, producto.idCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad; ", 
-     "  select producto.idProducto, producto.idSubCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad ",
-     
+      //  "select producto.idProducto, producto.idCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad; ",
+      "select producto.idProducto, producto.idSubCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad ",
+
       (err, result, field) => {
         if (!err) {
           res.json(result);
@@ -26,9 +26,8 @@ class ProductoController {
 
   public async listA(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
-     
-      "select *from producto order by producto.precio DESC",
-     // "select *from producto order by producto.precio ASC",
+      "select * from producto order by producto.precio DESC",
+      // "select *from producto order by producto.precio ASC",
       (err, result, field) => {
         if (!err) {
           res.json(result);
@@ -54,7 +53,6 @@ class ProductoController {
     res.json({ text: "El producto " + [req.body.name] + " fue eliminado" });
   }
 
- 
   public async getOne(req: Request, res: Response): Promise<any> {
     const data = await pool.query(
       "select * from producto where producto.idProducto = ?",
@@ -82,16 +80,12 @@ class ProductoController {
     );
   } */
 
-
-
-
   //seleccionar por categoria
   public async listCate(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
-      
-     // "select producto.idProducto, producto.idCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad where producto.idCategoria=?", 
-    "select producto.idProducto, subcategoria.idCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad inner join subcategoria on producto.idSubCategoria = subcategoria.idSubCategoria where subcategoria.idCategoria = ?",
-     [req.params.id],
+      // "select producto.idProducto, producto.idCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad where producto.idCategoria=?",
+      "select producto.idProducto, subcategoria.idCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad inner join subcategoria on producto.idSubCategoria = subcategoria.idSubCategoria where subcategoria.idCategoria = ?",
+      [req.params.id],
       (err, result, field) => {
         if (!err) {
           res.json(result);
@@ -103,7 +97,7 @@ class ProductoController {
   //producto de limite 3
   public async listThree(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
-      "select *from producto  where producto.stock <= 40 limit 6",
+      "select * from producto  where producto.stock <= 40 limit 6",
       (err, result, field) => {
         if (!err) {
           res.json(result);
@@ -112,7 +106,6 @@ class ProductoController {
     );
   }
 
-  
   public async listSub(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
       "select DISTINCT subcategoria.T_NameCategoria as subcategoria, subcategoria.idSubcategoria from producto inner join unidad on producto.idUnidad = unidad.idUnidad inner join subcategoria on producto.idSubCategoria = subcategoria.idSubCategoria where subcategoria.idCategoria = ?     ",
@@ -128,9 +121,8 @@ class ProductoController {
   //seleccionar por categoria y subcategoria
   public async listCateSub(req: Request, res: Response): Promise<void> {
     const data = await pool.query(
-      
-    "select producto.idProducto, producto.idSubCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad inner join subcategoria on producto.idSubCategoria = subcategoria.idSubCategoria where subcategoria.idCategoria = ? and subcategoria.idSubCategoria = ?",
-     [req.params.idcat,req.params.namesub],
+      "select producto.idProducto, producto.idSubCategoria, producto.name as producto, producto.image, producto.precio, producto.stock, producto.descripcion, unidad.name as unidades from producto inner join unidad on producto.idUnidad = unidad.idUnidad inner join subcategoria on producto.idSubCategoria = subcategoria.idSubCategoria where subcategoria.idCategoria = ? and subcategoria.idSubCategoria = ?",
+      [req.params.idcat, req.params.namesub],
       (err, result, field) => {
         if (!err) {
           res.json(result);
@@ -138,8 +130,6 @@ class ProductoController {
       }
     );
   }
-  
-
 }
 
 export const productoController = new ProductoController();

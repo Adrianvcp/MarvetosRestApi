@@ -10,7 +10,9 @@ class VendedorController {
   }
 
   public async delete(req: Request, res: Response): Promise<void> {
-    await pool.query("delete from vendedor where vendedor.idVendedor=?", [req.params.id]);
+    await pool.query("delete from vendedor where vendedor.idVendedor=?", [
+      req.params.id,
+    ]);
     res.json({ text: "delete:" + req.params.id });
   }
 
