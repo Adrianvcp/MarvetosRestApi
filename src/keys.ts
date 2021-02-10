@@ -1,8 +1,8 @@
 export default {
-  database: {
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "marvetos3",
-  },
-};
+    database: {
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'bdconsumidor'
+    }
+}
